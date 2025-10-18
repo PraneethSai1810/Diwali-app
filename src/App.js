@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import LandingPage from './components/LandingPage';
+import QuizPage from './components/QuizPage';
+import ResultPage from './components/ResultPage';
+import './animations/animations.css';
 
-function App() {
+const App = () => {
+  const [page, setPage] = useState('landing');
+  const [userName, setUserName] = useState('');
+  const [score, setScore] = useState(0);
+  const [answers, setAnswers] = useState([]);
+
+  const resetApp = () => {
+    setPage('landing');
+    setUserName('');
+    setScore(0);
+    setAnswers([]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen">
+      {page === 'landing' && (
+        <LandingPage 
+          setPage={setPage} 
+          setUserName={setUserName}
+        />
+      )}
+      {page === 'quiz' && (
+        <QuizPage 
+          setPage={setPage}
+          answers={answers}
+          setAnswers={setAnswers}
+          setScore={setScore}
+        />
+      )}
+      {page === 'result' && (
+        <ResultPage 
+          userName={userName}
+          score={score}
+          resetApp={resetApp}
+        />
+      )}
     </div>
   );
-}
+};
 
 export default App;
