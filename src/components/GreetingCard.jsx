@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Download, Sparkles, Star } from "lucide-react";
 import html2canvas from "html2canvas";
+import '../fonts/fonts.css';
 
 const GreetingCard = ({ userName, reward }) => {
   useEffect(() => {
@@ -96,7 +97,7 @@ const GreetingCard = ({ userName, reward }) => {
       <div
         id="greeting-card"
         className={`bg-gradient-to-br ${reward.gradient} rounded-2xl shadow-xl overflow-hidden relative`}
-        style={{ minHeight: "400px", fontFamily: "'Poppins', 'Inter', sans-serif" }}
+        style={{ minHeight: "400px" }}
       >
         <canvas
           id="fireworks-canvas"
@@ -125,52 +126,50 @@ const GreetingCard = ({ userName, reward }) => {
               <Sparkles className="text-white animate-pulse" size={32} />
             </div>
             <h2
-              className="text-3xl sm:text-4xl font-bold text-white mb-1 tracking-wide"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              Happy Diwali
-            </h2>
+  style={{ fontFamily: "'Stark Walker', 'Maldives', serif", letterSpacing: '3px', fontSize:"2rem", color:"white"}}
+>
+  Happy Diwali
+</h2>
             <div className="w-16 h-1 bg-white/50 mx-auto rounded-full"></div>
           </div>
 
-          <div className="text-center my-6">
-            <p className="text-base text-white/80 mb-1" style={{ fontFamily: "'Lato', sans-serif" }}>
-              Dear
-            </p>
-            <h3
-              className="text-3xl sm:text-4xl font-bold text-white"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              {userName}
-            </h3>
-          </div>
+          <div className="text-center my-10">
+  <p className="text-lg text-white/90 mb-2 font-semibold" style={{ fontFamily: "'Lato', sans-serif" }}>
+    Dear
+  </p>
+ <h3
+  className="text-4xl sm:text-5xl font-bold text-white drop-shadow-lg tracking-wide"
+  style={{ fontFamily: "'Maldives', 'Ghost Festival 2', serif", letterSpacing: '2px' }}
+>
+  {userName}
+</h3>
+</div>
 
-          <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/40 text-center mb-5">
-            <p
-              className="text-base sm:text-lg text-white font-medium italic"
-              style={{ fontFamily: "'Crimson Text', serif" }}
-            >
-              "{reward.quote}"
-            </p>
-          </div>
+        <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6 border-2 border-white/50 text-center mb-8">
+  <p
+    style={{ fontFamily: "'Counte DEMO', 'Clawmark', serif", fontSize:"1.5rem", color:"white" }}
+  >
+    "{reward.quote}"
+  </p>
+</div>
 
-          <div className="text-center">
-            <p
-              className="text-white/80 text-base sm:text-lg"
-              style={{ fontFamily: "'Open Sans', sans-serif" }}
-            >
-              May this festival bring joy, prosperity, and endless light to your life
-            </p>
-          </div>
+          <div className="text-center mb-8">
+  <p
+    className="text-white/90 text-lg sm:text-xl leading-relaxed"
+    style={{ fontFamily: "'Open Sans', sans-serif" }}
+  >
+    May this festival bring joy, prosperity, and endless light to your life
+  </p>
+</div>
 
-          <div className="text-center mt-5">
-            <div
-              className="text-white text-xl font-bold"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
-            >
-              ✨ Utsaha Cultural Club ✨
-            </div>
-          </div>
+          <div className="text-center mt-6">
+  <div
+    className="text-white text-2xl font-bold drop-shadow-lg tracking-widest"
+    style={{ fontFamily: "'Beautiful Santa', sans-serif", letterSpacing: '2px',fontSize:"1.8rem" }}
+  >
+    ✨ Utsaha Cultural Club ✨
+  </div>
+</div>
         </div>
       </div>
 

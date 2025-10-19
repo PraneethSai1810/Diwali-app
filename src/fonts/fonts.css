@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'Maldives';
+  src: url('./Malvides.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Ghost Festival 2';
+  src: url('./GhostFestival.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Clawmark';
+  src: url('./Clawmark.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Autumn Bright';
+  src: url('./AutumnBright.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Counte DEMO';
+  src: url('./CounteDEMO-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Stark Walker';
+  src: url('./StarkwalkerClassic.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Rainbow Unicorn';
+  src: url('./RainbowUnicorn.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Beautiful Santa';
+  src: url('./BeautifulSanta.otf') format('opentype');
+}

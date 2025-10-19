@@ -12,14 +12,19 @@ const QuizPage = ({ setPage, answers, setAnswers, setScore }) => {
   const handleNext = () => {
     if (selected === null) return;
 
-    const newAnswers = [...answers, selected === questions[currentQuestion].correct];
+    // ✅ Store selected option index instead of true/false
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = selected;
     setAnswers(newAnswers);
 
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSelected(null);
     } else {
-      const finalScore = newAnswers.filter(a => a).length;
+      // ✅ Calculate score based on correct answers
+      const finalScore = newAnswers.filter(
+        (a, i) => a === questions[i].correct
+      ).length;
       setScore(finalScore);
       setPage('result');
     }

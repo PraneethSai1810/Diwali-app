@@ -54,7 +54,11 @@ const LandingPage = ({ setPage, setUserName }) => {
             <input
               type="text"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+  const value = e.target.value;
+  const capitalized = value.charAt(0).toUpperCase() + value.slice(1);
+  setName(capitalized);
+}}
               onKeyPress={(e) => e.key === 'Enter' && handleStart()}
               placeholder="Your name here..."
               className="w-full px-4 py-2.5 rounded-lg bg-white/20 text-white placeholder-orange-200/60 border border-white/30 focus:border-orange-300 focus:outline-none transition-all text-sm sm:text-base"

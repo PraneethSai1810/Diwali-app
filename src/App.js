@@ -38,6 +38,7 @@ const App = () => {
           userName={userName}
           score={score}
           resetApp={resetApp}
+          userAnswers={answers} // ✅ added this line
         />
       )}
     </div>

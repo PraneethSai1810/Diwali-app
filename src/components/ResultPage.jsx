@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Trophy, RotateCcw, Sparkles } from 'lucide-react';
+import { Trophy, RotateCcw, Sparkles, CheckCircle2, XCircle } from 'lucide-react';
 import { getReward } from '../utils/rewards';
 import GreetingCard from './GreetingCard';
 import { questions } from '../data/questions';
 import Crackers from '../animations/Crackers';
 
-const ResultPage = ({ userName, score, resetApp }) => {
+const ResultPage = ({ userName, score, resetApp, userAnswers }) => {
   const [displayScore, setDisplayScore] = useState(0);
   const [showCard, setShowCard] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);  // NEW: control feedback view
+
   const reward = getReward(score);
 
   useEffect(() => {
@@ -45,6 +47,42 @@ const ResultPage = ({ userName, score, resetApp }) => {
 
     return () => clearInterval(interval);
   }, []);
+
+  // NEW: Render feedback for each question
+  const renderFeedback = () => (
+    <div className="mb-10 max-w-3xl mx-auto bg-white/10 rounded-xl p-6 text-white">
+      <h2 className="text-2xl font-semibold mb-4">Your Answers</h2>
+      <ul className="space-y-4 max-h-96 overflow-y-auto">
+        {questions.map((q, i) => {
+          const userAnswer = userAnswers[i];
+          const isCorrect = userAnswer === q.correct;
+          return (
+            <li
+              key={i}
+              className={`p-4 rounded-lg border ${
+                isCorrect ? 'border-green-500 bg-green-900/30' : 'border-red-500 bg-red-900/30'
+              }`}
+            >
+              <p className="font-semibold mb-1">{q.q}</p>
+              <p>
+                Your answer: <span className="italic">{q.options[userAnswer] || "No answer"}</span>{" "}
+                {isCorrect ? (
+                  <CheckCircle2 className="inline-block text-green-400 ml-2" size={18} />
+                ) : (
+                  <XCircle className="inline-block text-red-400 ml-2" size={18} />
+                )}
+              </p>
+              {!isCorrect && (
+                <p>
+                  Correct answer: <strong>{q.options[q.correct]}</strong>
+                </p>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-500 via-orange-600 to-pink-600 px-4 sm:px-6 py-8 sm:py-12 relative overflow-hidden">
@@ -91,25 +129,43 @@ const ResultPage = ({ userName, score, resetApp }) => {
           </div>
         </div>
 
-        {/* Greeting Card */}
-        {showCard && (
+        {/* Conditionally show GreetingCard or Feedback */}
+        {showCard && !showFeedback && (
           <div className="animate-fadeIn px-2 sm:px-0">
             <GreetingCard userName={userName} reward={reward} score={score} />
           </div>
         )}
 
-        {/* Retry Button */}
-        {showCard && (
+               {showCard && showFeedback && (
+          <div className="animate-fadeIn px-2 sm:px-0">
+            {renderFeedback()}
+
+            {/* Back button */}
+            <div className="text-center mt-8">
+              <button
+                onClick={() => setShowFeedback(false)}
+                className="bg-white/20 backdrop-blur-sm text-white font-semibold py-2 rounded-lg hover:bg-white/30 transform hover:scale-105 transition-all duration-300 border border-white/40 shadow-md inline-flex items-center gap-2 px-4 sm:px-6 text-sm sm:text-base"
+              >
+                <RotateCcw size={16} />
+                Back to Greeting Card
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Button to toggle feedback */}
+        {!showFeedback && showCard && (
           <div className="text-center mt-8 animate-fadeIn px-2 sm:px-0">
             <button
-              onClick={resetApp}
+              onClick={() => setShowFeedback(true)}
               className="bg-white/20 backdrop-blur-sm text-white font-semibold py-2 rounded-lg hover:bg-white/30 transform hover:scale-105 transition-all duration-300 border border-white/40 shadow-md inline-flex items-center gap-2 px-4 sm:px-6 text-sm sm:text-base"
             >
               <RotateCcw size={16} />
-              Celebrate Again
+              Check Your Answers
             </button>
           </div>
         )}
+
       </div>
     </div>
   );
