@@ -165,7 +165,7 @@ const GreetingCard = ({ userName, reward }) => {
           <div className="text-center mt-6">
   <div
     className="text-white text-2xl font-bold drop-shadow-lg tracking-widest"
-    style={{ fontFamily: "'Beautiful Santa', sans-serif", letterSpacing: '2px',fontSize:"1rem" }}
+    style={{ fontFamily: "'Beautiful Santa', sans-serif", letterSpacing: '2px',fontSize:"1.5rem" }}
   >
     ✨ Utsaha Cultural Club ✨
   </div>
